@@ -1,7 +1,9 @@
 import { Button } from "@mui/material";
 import React from "react";
 import "./index.css";
+import swal from "sweetalert";
 import { useLocation, useNavigate} from "react-router-dom";
+import { Warning } from "@mui/icons-material";
 const Gdata = [
   {
     name: "Dr. Ritika Sen",
@@ -55,8 +57,9 @@ const Dermatology = () => {
                       {item.age}
                     </p>
                     <button class="btn btn-success" onClick={()=>{
-                        if(item.count>=10){
-                          alert("Appointment Limit Reached,Book Another Doctor")
+                        if(item.count>=1){
+                          //alert("Appointment Limit Reached,Book Another Doctor")
+                          swal("CONGRATULATIONS!" + "djjd",Warning)
                           return
                         }
                         if(item.count>4){

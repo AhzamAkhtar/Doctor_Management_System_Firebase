@@ -1,4 +1,5 @@
 import { Button } from "@mui/material";
+import swal from "sweetalert";
 import React from "react";
 import "./index.css";
 import { useLocation, useNavigate} from "react-router-dom";
@@ -55,7 +56,7 @@ const ConsultantPhysician = () => {
                     </p>
                     <button class="btn btn-success" onClick={()=>{
                         if(item.count>=10){
-                          alert("Appointment Limit Reached,Book Another Doctor")
+                          swal("Appointment Limit Reached,Book Another Doctor","Warning")
                           return
                         }
                         if(item.count>4){

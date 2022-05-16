@@ -13,6 +13,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
+import swal from 'sweetalert';
 import "./index.css"
 export default class CreateDoctor extends Component {
     constructor(props) {
@@ -35,6 +36,7 @@ export default class CreateDoctor extends Component {
     }
 
     submitHandler=()=>{
+       swal("CONGRATULATIONS!" + "You Have Successfully Become A Doctor")
         console.log("submit handler calling",this.state )
         axios.post("http://localhost:8080/Doctor/CreateDoctor",this.state)
         .then((response)=>{
@@ -129,7 +131,9 @@ export default class CreateDoctor extends Component {
             type="button"
             fullWidth
             variant="contained"
+            
             sx={{ mt: 3, mb: 2 }}
+            
           >
             Create
           </Button>

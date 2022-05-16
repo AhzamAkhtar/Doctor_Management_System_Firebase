@@ -1,6 +1,7 @@
 import { Button } from "@mui/material";
 import React, { useState,useEffect } from "react";
 import "./index.css";
+import swal from "sweetalert";
 import { useLocation, useNavigate } from "react-router-dom";
 const Gdata = [
   {
@@ -56,7 +57,7 @@ const General = () => {
                       <p class="card-text">{item.age}</p>
                       <button class="btn btn-success" onClick={()=>{
                         if(item.count>=10){
-                          alert("Appointment Limit Reached,Book Another Doctor")
+                          swal("Appointment Limit Reached,Book Another Doctor","Warning")
                           return
                         }
                         if(item.count>4){

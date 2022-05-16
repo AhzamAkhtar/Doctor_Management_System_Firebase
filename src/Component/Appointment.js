@@ -1,5 +1,6 @@
 import { Usb } from "@mui/icons-material";
 import React, { useEffect, useState } from "react";
+import swal from 'sweetalert'
 import { useLocation, useNavigate } from "react-router-dom";
 import "./index.css";
 import jsPDF from "jspdf";
@@ -282,6 +283,7 @@ const Appointment = () => {
           </button>
           <div style={{ marginTop: "50px" }}>
             <button onClick={()=>{
+              swal("CONGRATULATIONS  "+ `${fullname.fname}`,"Your Appointment has Been Successfully Booked  for " + `${location.state.title}` + ", A Confirmation  Has Been Downloaded." + " Thanks For Choosing Us!","success")
               doc.save("Appointment-Recipt.pdf")
             }}
               style={{
