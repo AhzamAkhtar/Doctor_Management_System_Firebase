@@ -59,7 +59,7 @@ const Dermatology = () => {
                     <button class="btn btn-success" onClick={()=>{
                         if(item.count>=1){
                           //alert("Appointment Limit Reached,Book Another Doctor")
-                          swal("CONGRATULATIONS!" + "djjd",Warning)
+                          swal("Appointment Limit Reached,Book Another Doctor","Warning")
                           return
                         }
                         if(item.count>4){
