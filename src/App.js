@@ -12,6 +12,14 @@ import Appointment from "./Component/Appointment";
 import News from "./Component/News";
 import Map from "./Component/Map";
 import TypeofAssistance from "./TypeofAssistance";
+import General from "./Component/General";
+import ConsultantPhysician from "./ConsultantPhysician";
+import Gynecology from "./Component/Gynecology";
+import Pediatrics from "./Component/Pediatrics";
+import Dermatology from "./Component/Dermatology";
+import Nutritioncounselling from "./Component/Nutritioncounselling";
+import Orthopedics from "./Component/Orthopedics";
+import Psychiatry from "./Component/Psychiatry";
 function App() {
   return (
     <div>
@@ -25,6 +33,14 @@ function App() {
         <Route path="/doctorlist" element={<DoctorList/>}/>
         <Route path="/TypeofAssistance" element={<TypeofAssistance/>}/>
         <Route path="/Appointment" element={<Appointment/>}/>
+        <Route path="/General" element={<General/>}/>
+        <Route path="/ConsultantPhysician" element={<ConsultantPhysician/>}/>
+        <Route path="/Gynecology" element={<Gynecology/>}/>
+        <Route path="/Pediatrics" element={<Pediatrics/>}/>
+        <Route path="/Dermatology" element={<Dermatology/>}/>
+        <Route path="/Nutritioncounselling" element={<Nutritioncounselling/>}/>
+        <Route path="/Orthopedics" element={<Orthopedics/>}/>
+        <Route path="/Psychiatry" element={<Psychiatry/>}/>
       </Routes>
     </Router>
 

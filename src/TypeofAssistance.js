@@ -1,6 +1,7 @@
 import { Usb } from "@mui/icons-material";
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+//
 import "./index.css";
 import v1 from "./Component/v1.jpg"
 import v2 from "./Component/v2.jpg"
@@ -61,8 +62,12 @@ const Data=[
     }
     
 ]
+
+//const [type,settype]=useState("General Medicine")
+//let navigate = useNavigate()
 const TypeofAssistance = () => {
     let navigate = useNavigate()
+    const [type,settype]=useState("")
   return (
     <>
       <div className="main_news">
@@ -85,9 +90,37 @@ const TypeofAssistance = () => {
                           <h5 class="card-title">{item.title}</h5>
                           <span style={{color:"green"}}>{item.time}</span>
                           <p class="card-text">{item.text}</p>
-                          <button class="btn btn-success" onClick={()=>{
-                              navigate("/Appointment",{state:item})
-                          }}>Selct</button>
+                          
+
+                          <button class="btn btn-success"
+                          onClick={()=>{
+                            if(item.title=="General Medicine"){
+                              navigate("/General",{state:item})
+                            }
+                            if(item.title=="Consultant Physician"){
+                              navigate("/ConsultantPhysician",{state:item})
+                            }
+                            if(item.title=="Gynecology"){
+                              navigate("/Gynecology",{state:item})
+                            }
+                            if(item.title=="Pediatrics"){
+                              navigate("/Pediatrics",{state:item})
+                            }
+                            if(item.title=="Dermatology"){
+                              navigate("/Dermatology",{state:item})
+                            }
+                            
+                            if(item.title=="Nutrition Counselling"){
+                              navigate("/Nutritioncounselling",{state:item})
+                            }
+                            if(item.title=="Orthopedics"){
+                              navigate("/Orthopedics",{state:item})
+                            }
+                            if(item.title=="Psychiatry"){
+                              navigate("/Psychiatry",{state:item})
+                            }
+                          }} 
+                          >Selct Your Doctor</button>
                           
                         </div>
                       </div>
