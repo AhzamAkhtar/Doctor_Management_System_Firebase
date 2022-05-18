@@ -49,9 +49,10 @@ const News = () => {
                         <div class="card-body">
                           <h5 class="card-title">{item.title}</h5>
                           <p class="card-text">{item.description}</p>
-                          <a href="#" class="btn btn-info">
-                            Read full Article
-                          </a>
+                          <button class="btn btn-info" onClick={(event)=>{
+                            event.preventDefault()
+                            window.open(item.url)
+                          }}>Read Full Article</button>
                         </div>
                       </div>
                     </>

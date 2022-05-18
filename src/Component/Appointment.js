@@ -80,37 +80,49 @@ const Appointment = () => {
     settime("18:00")
   };
   var doc = new jsPDF("p","pt")
-  doc.setFont("courier-bold")
+ doc.setFont("courier-bold")
   doc.setFontSize(30)
   doc.text(150,35,"Pioneer Healtcare Pvt.Ltd")
   doc.setFontSize(20)
   doc.text(200,70,"Appointment Recipt")
   doc.setFontSize(20)
 
-  doc.text(70,100,"Patient First Name : ")
-  doc.text(300,100,fullname.fname)
+  const date = new Date()
+  const n = date.toDateString()
 
-  doc.text(70,200,"Type of Assistance : ")
-  doc.text(300,200,location.state.title)
+  doc.text(70,150,"Date Of Booking : ")
+  doc.text(300,150,n)
+
+  
+
+  doc.text(70,200,"Patient First Name : ")
+  doc.text(300,200,fullname.fname)
+
+  doc.text(70,250,"Patient Last Name : ")
+  doc.text(300,250,fullname.lname)
 
 
-  doc.text(70,300,"Patient Last Name : ")
-  doc.text(300,300,fullname.lname)
+  doc.text(70,300,"Type of Assistance : ")
+  doc.text(300,300,location.state.title)
 
-  doc.text(70,400,"Patient Email : ")
-  doc.text(300,400,fullname.email)
 
-  doc.text(70,500,"Patient PhoneNumber : ")
-  doc.text(300,500,fullname.phone)
+  //doc.text(70,300,"Patient Last Name : ")
+  //doc.text(300,300,fullname.lname)
 
-  doc.text(70,600,"Patient Gender : ")
-  doc.text(300,600,gender)
+  doc.text(70,350,"Patient Email : ")
+  doc.text(300,350,fullname.email)
 
-  doc.text(70,700,"Appointment Time : ")
-  doc.text(300,700,time)
+  doc.text(70,400,"Patient PhoneNumber : ")
+  doc.text(300,400,fullname.phone)
 
-  doc.text(70,800,"Fees : ")
-  doc.text(300,800,location.state.text)
+  doc.text(70,450,"Patient Gender : ")
+  doc.text(300,450,gender)
+
+  doc.text(70,500,"Appointment Time : ")
+  doc.text(300,500,time)
+
+  doc.text(70,550,"Fees : ")
+doc.text(300,550,location.state.text)
 
   return (
     <>

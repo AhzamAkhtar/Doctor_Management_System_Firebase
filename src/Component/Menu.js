@@ -45,7 +45,7 @@ const Menu = () =>{
                 borderRadius:"50px"
               }}
             >
-              <a className="button_text" style={{textDecoration:"None",color:"white"}} href="/CreateDoctor#top">Become a Doctor </a>
+              <a className="button_text" style={{textDecoration:"None",color:"white"}} href="/CreateDoctor#top">Register As A Doctor</a>
             </button>
           </div>
         </div>  

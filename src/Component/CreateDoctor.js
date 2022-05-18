@@ -36,7 +36,7 @@ export default class CreateDoctor extends Component {
     }
 
     submitHandler=()=>{
-       swal("CONGRATULATIONS!" + "You Have Successfully Become A Doctor")
+       swal("CONGRATULATIONS!" + "You Have Successfully Registered As A Doctor")
         console.log("submit handler calling",this.state )
         axios.post("http://localhost:8080/Doctor/CreateDoctor",this.state)
         .then((response)=>{
@@ -69,7 +69,7 @@ export default class CreateDoctor extends Component {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Become a Doctor
+          Register As A Doctor
         </Typography>
         <Box component="form" noValidate  sx={{ mt: 3 }}>
           <Grid container spacing={2}>
@@ -135,7 +135,7 @@ export default class CreateDoctor extends Component {
             sx={{ mt: 3, mb: 2 }}
             
           >
-            Create
+            Register As a Doctor
           </Button>
          
         </Box>
