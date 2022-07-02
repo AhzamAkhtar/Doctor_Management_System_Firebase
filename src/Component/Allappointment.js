@@ -42,7 +42,7 @@ const Allappointment = () => {
       });
 
     return () => subscribers();
-  });
+  },[]);
 
   const admin=(id)=>{
      const adminarray =[];
@@ -139,6 +139,7 @@ const Allappointment = () => {
                     if (ff==Admin){
                       alert("ok")
                       firestore.collection("Patients").doc(item.key).delete()
+                      //window.location.reload()
                     }else{
                       alert("Wrong Code")
                     }
