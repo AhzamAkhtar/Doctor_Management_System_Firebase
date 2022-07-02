@@ -132,18 +132,20 @@ const Allappointment = () => {
                 <div class="card-body">
                   <h5 class="card-title" style={{color:"green"}}>{"Patient Name : "+item.FirestName} {item.LastName}</h5>
                   <h6 class="card-title" style={{color:"red"}}>{"Appointment Time : "+item.AppointmentTime}</h6>
-                  <h6 class="card-title" style={{color:"skyblue"}}>{item.Gender}</h6>
+                  <h6 class="card-title" style={{color:"skyblue"}}>{"Patient Gender : "+item.Gender}</h6>
                   <h6 class="card-title" style={{color:"skyblue"}}>{"Type Of Assistance : "+item.TypeOfAssistance}</h6>
-                  <button onClick={()=>{
-                    const ff = prompt("fAa")
+                  <button className="btn btn-warning"
+                  onClick={()=>{
+                    const ff = prompt("Enter Admin Code For Deletion")
                     if (ff==Admin){
                       alert("ok")
                       firestore.collection("Patients").doc(item.key).delete()
+                      alert("Appointment Deleted , Please Reload Page To See Changes")
                       //window.location.reload()
                     }else{
-                      alert("Wrong Code")
+                      alert("Entered Wrong Code")
                     }
-                  }}>Delete</button>
+                  }}>Delete This Appointment</button>
                 </div>
               </div>
               </div>
