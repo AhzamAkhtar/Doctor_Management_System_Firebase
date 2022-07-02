@@ -4,6 +4,19 @@ import swal from 'sweetalert'
 import { useLocation, useNavigate } from "react-router-dom";
 import "./index.css";
 import jsPDF from "jspdf";
+import firebase from "firebase/compat/app"
+import "firebase/compat/firestore"
+import { collection, query, where, getDocs, Firestore } from "firebase/firestore";
+firebase.initializeApp({
+  apiKey: "AIzaSyBm0kPsibJol7yD3hIegei2uyWvkf9Jrgk",
+  authDomain: "zakibhai-82e1f.firebaseapp.com",
+  projectId: "zakibhai-82e1f",
+  storageBucket: "zakibhai-82e1f.appspot.com",
+  messagingSenderId: "304819231340",
+  appId: "1:304819231340:web:138ecefa39bb0880455649",
+  measurementId: "G-S3DTS3N8Y0"
+})
+const firestore = firebase.firestore()
 const getLocalItems = () => {
   const list = localStorage.getItem("lists");
   if (!list)
@@ -40,6 +53,27 @@ const Appointment = () => {
   useEffect(() => {
     localStorage.setItem("lists", JSON.stringify(fullname));
   }, [fullname]);
+
+  const addToFirebase=()=>{
+    firestore.collection("Patients").add({
+      FirestName:fullname.fname,
+      LastName:fullname.lname,
+      TypeOfAssistance:location.state.title,
+      PatientEmail:fullname.email,
+      PatientPhone:fullname.phone,
+      Gender:gender,
+      AppointmentTime:time,
+      TimeStamp: firebase.firestore.FieldValue.serverTimestamp() 
+    })
+  }
+   async function Allappointment(){
+    const q= query(collection(firestore,"Patients"))
+    const quearySnapshot = await getDocs(q)
+    quearySnapshot.forEach((doc)=>{
+      console.log(doc.id,"=>",doc.data().LastName)
+        console.log(doc.id,"=>",doc.data())
+    })
+  }
 
   const button1 = () => {
     fsetcolor("yellow");
@@ -295,6 +329,8 @@ doc.text(300,550,location.state.text)
           </button>
           <div style={{ marginTop: "50px" }}>
             <button onClick={()=>{
+              Allappointment()
+              addToFirebase()
               swal("CONGRATULATIONS  "+ `${fullname.fname}`,"Your Appointment has Been Successfully Booked  for " + `${location.state.title}` + ", A Confirmation  Has Been Downloaded." + " Thanks For Choosing Us!","success")
               doc.save("Appointment-Recipt.pdf")
             }}

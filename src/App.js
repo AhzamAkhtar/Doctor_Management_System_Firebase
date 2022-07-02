@@ -20,6 +20,7 @@ import Dermatology from "./Component/Dermatology";
 import Nutritioncounselling from "./Component/Nutritioncounselling";
 import Orthopedics from "./Component/Orthopedics";
 import Psychiatry from "./Component/Psychiatry";
+import Allappointment from "./Component/Allappointment";
 function App() {
   return (
     <div>
@@ -41,6 +42,7 @@ function App() {
         <Route path="/Nutritioncounselling" element={<Nutritioncounselling/>}/>
         <Route path="/Orthopedics" element={<Orthopedics/>}/>
         <Route path="/Psychiatry" element={<Psychiatry/>}/>
+        <Route path="/Allappointment" element={<Allappointment/>}/>
       </Routes>
     </Router>
 
