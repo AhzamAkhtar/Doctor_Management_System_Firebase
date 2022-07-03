@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
 import {
+  updateDoc,
     getDoc,
     doc,
   collection,
@@ -25,6 +26,9 @@ firebase.initializeApp({
 });
 const firestore = firebase.firestore();
 const Allappointment = () => {
+  const [first,setfirst] = useState("Appointment")
+  const [second,setsecond] = useState("True")
+  const [Filter,setFilter] = useState([])
   const [Admin,setAdmin] = useState()
   const [loading, setLoading] = useState(true);
   const [posts, setPosts] = useState([]);
@@ -32,6 +36,7 @@ const Allappointment = () => {
     const getPostsFromFirebase = [];
     const subscribers = firestore
       .collection("Patients")
+      .where(`${first}`,"==",`${second}`)
       .onSnapshot((quearySnapshot) => {
         quearySnapshot.forEach((doc) => {
           getPostsFromFirebase.push({ ...doc.data(), key: doc.id });
@@ -42,7 +47,7 @@ const Allappointment = () => {
       });
 
     return () => subscribers();
-  },[]);
+  },[first,second]);
 
   const admin=(id)=>{
      const adminarray =[];
@@ -51,76 +56,91 @@ const Allappointment = () => {
             adminarray.push({...doc.data()})
             
         })
-        //console.log(adminarray[0])
-        //const result = Object.values(adminarray[0])
-        //console.log(result[0])
-
         firestore.collection("Patients").doc(id).delete()
         return ()=>admin_verfy
-
-        
-
-
-
-
     })
     //return [() => admin_verfy,adminarray]
     return adminarray
-  
-    
   }
 
- const qw=()=>{
-  const tt= firestore.collection("Admin").doc("Dqyb1GcO5JrseP3KFe9P").get().then(dooc=>{
+ const checkforadmin=()=>{
+  const tt= firestore.collection("Admin").doc("FjPti0vk37bwqH9bFMHI").get().then(dooc=>{
     console.log(dooc.data().Passward)
     setAdmin(dooc.data().Passward)
-    console.log("++"+Admin)
   })
   //const rr = Object.values(tt)
-  
-  
  }
-
- qw()
-  
-  
-  
-  /*const [array,setArray] = useState([])
-    const getallData=async()=>{
-        firestore.collection("Patients").orderBy("TimeStamp","desc").onSnapshot((snapshot)=>{
-            //console.log(snapshot.docs.map(doc=>doc.data()))
-            setArray(snapshot.docs.map(doc=>doc.data()))
-            console.log(array)
-            return
-        })
-    }
-    getallData()*/
-  /**useEffect(() => {
-    
-    getallData()
-});*/
-
-  /**async function read() {
-    console.log("Clicked");
-
-    const q = query(collection(firestore, "Patients"));
-    const quearySnapshot = await getDocs(q);
-    quearySnapshot.forEach((doc) => {
-      //array.push(doc.data())
-      array.push(doc.data());
-      console.log(doc.id, "=>", doc.data());
-      console.log(array);
-      //setArray([])
-    });
+ checkforadmin()
+ //console.log(Admin)
+ /**useEffect(()=>{
+  async function filter(){
+    const filterArray = []
+    const q = query(collection(firestore,"Patients"),where("AppointmentTime","==","14:00"));
+    const quearySnapshot = await getDocs(q)
+    quearySnapshot.forEach((doc)=>{
+      filterArray.push({...doc.data()})
+      console.log(doc.data())
+    })
+    setFilter(filterArray)
   }
-  read();
-  //setArray([])*/
+  filter()
+ },[])*/
+
+
+
+const nc=()=>{
+  setfirst("TypeOfAssistance")
+  setsecond("Nutrition Counselling")
+}
+const gn=()=>{
+  setfirst("TypeOfAssistance")
+  setsecond("General Medicine")
+}
+const cp=()=>{
+  setfirst("TypeOfAssistance")
+  setsecond("Consultant Physician")
+}
+const gy=()=>{
+  setfirst("TypeOfAssistance")
+  setsecond("Gynecology")
+}
+const ped=()=>{
+  setfirst("TypeOfAssistance")
+  setsecond("Pediatrics")
+}
+const der=()=>{
+  setfirst("TypeOfAssistance")
+  setsecond("Dermatology")
+}
+const orth=()=>{
+  setfirst("TypeOfAssistance")
+  setsecond("Orthopedics")
+}
+const psy=()=>{
+  setfirst("TypeOfAssistance")
+  setsecond("Psychiatry")
+}
+async function edit(idforEdit){
+  const docRef = doc(firestore,"Patients",idforEdit)
+  await updateDoc(docRef,{
+    "Appointment":"False"
+  })
+}
+
   if (loading) {
     return <Spinner/>
   }
   return (
     <>
     <div className="container my-5">
+    <button onClick={nc} className="mx-2 my-3 btn btn-info" >Nutrition Counselling</button>
+    <button onClick={gn} className="mx-2 my-3 btn btn-info">General Medicine</button>
+    <button onClick={cp} className="mx-2 my-3 btn btn-info">Consultant Physician</button>
+    <button onClick={gy} className="mx-2 my-3 btn btn-info">Gynecology</button>
+    <button onClick={ped} className="mx-2 my-3 btn btn-info">Pediatrics</button>
+    <button onClick={der} className="mx-2 my-3 btn btn-info">Dermatology</button>
+    <button onClick={orth} className="mx-2 my-3 btn btn-info">Orthopedics</button>
+    <button onClick={psy} className="mx-2 my-3 btn btn-info">Psychiatry</button>
     <>
     <div className="row" style={{border:"2px"}}>
       {posts.length > 0 ? (
@@ -146,6 +166,9 @@ const Allappointment = () => {
                       alert("Entered Wrong Code")
                     }
                   }}>Delete This Appointment</button>
+                  <button className="my-3 btn btn-danger"onClick={()=>{
+                    edit(item.key)
+                  }}>Update Appointment to False</button>
                 </div>
               </div>
               </div>

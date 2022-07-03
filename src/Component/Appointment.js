@@ -56,6 +56,7 @@ const Appointment = () => {
 
   const addToFirebase=()=>{
     firestore.collection("Patients").add({
+      Appointment:"True",
       FirestName:fullname.fname,
       LastName:fullname.lname,
       TypeOfAssistance:location.state.title,
@@ -332,7 +333,7 @@ doc.text(300,550,location.state.text)
               Allappointment()
               addToFirebase()
               swal("CONGRATULATIONS  "+ `${fullname.fname}`,"Your Appointment has Been Successfully Booked  for " + `${location.state.title}` + ", A Confirmation  Has Been Downloaded." + " Thanks For Choosing Us!","success")
-              doc.save("Appointment-Recipt.pdf")
+              //doc.save("Appointment-Recipt.pdf")
             }}
               style={{
                 width: "60%",
