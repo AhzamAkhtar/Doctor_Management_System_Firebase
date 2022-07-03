@@ -91,7 +91,7 @@ const Menu = () =>{
           type="button"
               class="btn btn-success"
           onClick={()=>{
-            navigate("/Uupload")
+            navigate("/Upload")
           }} style={{
                 position: "relative",
                 alignSelf: "center",
@@ -99,7 +99,7 @@ const Menu = () =>{
                 width:"50rem",
                 borderRadius:"50px",
                 
-              }}><a className="button_text" style={{textDecoration:"None",color:"white"}} href="/Uupload">Upload</a></button>
+              }}><a className="button_text" style={{textDecoration:"None",color:"white"}} href="/Upload">Upload</a></button>
         </div>
         </div>
 
