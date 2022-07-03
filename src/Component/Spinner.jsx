@@ -7,7 +7,7 @@ import Balls     from "./Balls.gif"
 export class Spinner extends Component {
     render() {
         return (
-            <div className="text-center">
+            <div className="text-center" style={{marginTop:"5px"}}>
                 <img src={Balls} alt="loading"/>
             </div>
         )

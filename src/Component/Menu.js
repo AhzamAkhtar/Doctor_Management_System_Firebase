@@ -85,6 +85,24 @@ const Menu = () =>{
         </div>
         </div>
 
+        <div style={{width:"90%",height:"90%",marginLeft:"50px",position:"relative"}}  className="last_name">
+        <div class="col-md-12 text-center">
+          <button 
+          type="button"
+              class="btn btn-success"
+          onClick={()=>{
+            navigate("/Uupload")
+          }} style={{
+                position: "relative",
+                alignSelf: "center",
+                marginTop: "10px",
+                width:"50rem",
+                borderRadius:"50px",
+                
+              }}><a className="button_text" style={{textDecoration:"None",color:"white"}} href="/Uupload">Upload</a></button>
+        </div>
+        </div>
+
 
         <div>
 

@@ -120,6 +120,22 @@ const psy=()=>{
   setfirst("TypeOfAssistance")
   setsecond("Psychiatry")
 }
+const twelve=()=>{
+  setfirst("AppointmentTime")
+  setsecond("12:00")
+}
+const eig=()=>{
+  setfirst("AppointmentTime")
+  setsecond("18:00")
+}
+const four=()=>{
+  setfirst("AppointmentTime")
+  setsecond("14:00")
+}
+const six=()=>{
+  setfirst("AppointmentTime")
+  setsecond("16:00")
+}
 async function edit(idforEdit){
   const docRef = doc(firestore,"Patients",idforEdit)
   await updateDoc(docRef,{
@@ -141,6 +157,10 @@ async function edit(idforEdit){
     <button onClick={der} className="mx-2 my-3 btn btn-info">Dermatology</button>
     <button onClick={orth} className="mx-2 my-3 btn btn-info">Orthopedics</button>
     <button onClick={psy} className="mx-2 my-3 btn btn-info">Psychiatry</button>
+    <button onClick={twelve} className="mx-2 my-3 btn btn-info">12:00</button>
+    <button onClick={eig} className="mx-2 my-3 btn btn-info">18:00</button>
+    <button onClick={four} className="mx-2 my-3 btn btn-info">14:00</button>
+    <button onClick={six} className="mx-2 my-3 btn btn-info">16:00</button>
     <>
     <div className="row" style={{border:"2px"}}>
       {posts.length > 0 ? (

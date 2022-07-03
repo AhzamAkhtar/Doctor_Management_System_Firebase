@@ -149,3 +149,14 @@ body {
   height: 110%;
   background-color: rgb(209, 245, 233);
 }
+.Appop{
+  width: 100vw;
+  height: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+img{
+  width: 300px;
+  margin: 10px;
+}

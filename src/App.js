@@ -21,6 +21,8 @@ import Nutritioncounselling from "./Component/Nutritioncounselling";
 import Orthopedics from "./Component/Orthopedics";
 import Psychiatry from "./Component/Psychiatry";
 import Allappointment from "./Component/Allappointment";
+import Uuload from "./Component/Uupload";
+//import Upload from "./Component/Upload";
 function App() {
   return (
     <div>
@@ -43,6 +45,7 @@ function App() {
         <Route path="/Orthopedics" element={<Orthopedics/>}/>
         <Route path="/Psychiatry" element={<Psychiatry/>}/>
         <Route path="/Allappointment" element={<Allappointment/>}/>
+        <Route path="/Uupload" element={<Uuload/>}/>
       </Routes>
     </Router>
 

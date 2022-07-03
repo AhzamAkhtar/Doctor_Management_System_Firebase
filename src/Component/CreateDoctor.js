@@ -14,8 +14,11 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
 import swal from 'sweetalert';
+import firebase from "firebase/compat/app";
+import "firebase/compat/firestore";
 import "./index.css"
 export default class CreateDoctor extends Component {
+  
     constructor(props) {
       super(props)
     
@@ -27,6 +30,8 @@ export default class CreateDoctor extends Component {
         doctorEmailId:""
       }
     }
+
+    
 
 
     onChange=(event)=>{
