@@ -33,7 +33,7 @@ function Upload() {
     });
   };
 
-  useEffect(() => {
+  /*useEffect(() => {
     setImageUrls([])
    // const getdata = []
     listAll(imagesListRef).then((response) => {
@@ -47,7 +47,23 @@ function Upload() {
       });
       //setImageUrls(getdata)
     });
-  },[])
+  },[])*/
+
+
+  function bro(){
+    setImageUrls([])
+    listAll(imagesListRef).then((response) => {
+      response.items.forEach((item) => {
+        getDownloadURL(item).then((url) => {
+          console.log(url)
+          //getdata.push(url)
+          setImageUrls((prev)=>[...prev,url])
+        });
+        
+      });
+      //setImageUrls(getdata)
+    });
+  }
 
   console.log(imageUrls)
   
@@ -60,6 +76,7 @@ function Upload() {
         }}
       />
       <button onClick={uploadFile}> Upload Image</button>
+      <button onClick={bro}>show</button>
       {imageUrls.map((url) => {
         return <img src={url} />;
       })}
