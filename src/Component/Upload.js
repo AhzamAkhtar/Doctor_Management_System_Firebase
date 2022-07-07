@@ -15,6 +15,7 @@ import { v4 } from "uuid";
 import "./index.css"
 import { async } from "@firebase/util";
 function Upload() {
+  const firestore = firebase.firestore()
   const [imageUpload, setImageUpload] = useState(null);
   const [imageUrls, setImageUrls] = useState([]);
   const [progess,setProgress] = useState(0)
@@ -35,6 +36,7 @@ function Upload() {
       getDownloadURL(snapshot.ref).then((url) => {
         console.log(url)
         setImageUrls((prev) => [...prev, url]);
+        addToFirebase(url)
       });
     });
   };
@@ -72,7 +74,11 @@ function Upload() {
     });
   }
 
-  console.log(imageUrls)
+  const addToFirebase=(url)=>{
+    firestore.collection("images").add({
+      Image:url
+    })
+  }
   
   return (
     <div className="Appop">
@@ -83,7 +89,7 @@ function Upload() {
         }}
       />
       <button onClick={uploadFile}> Upload Image</button>
-      <h3>Progress {progess} %</h3>
+      <progess>Progress {progess} %</progess>
       <button onClick={bro}>show</button>
       {imageUrls.map((url) => {
         return <img src={url} />;
