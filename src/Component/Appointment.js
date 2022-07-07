@@ -6,6 +6,9 @@ import "./index.css";
 import jsPDF from "jspdf";
 import firebase from "firebase/compat/app"
 import "firebase/compat/firestore"
+import { getStorage } from "firebase/storage";
+import { ref } from "firebase/storage";
+import { listAll } from "firebase/storage";
 import { collection, query, where, getDocs, Firestore } from "firebase/firestore";
 firebase.initializeApp({
   apiKey: "AIzaSyBm0kPsibJol7yD3hIegei2uyWvkf9Jrgk",
@@ -17,6 +20,25 @@ firebase.initializeApp({
   measurementId: "G-S3DTS3N8Y0"
 })
 const firestore = firebase.firestore()
+const storage = getStorage()
+
+const listRef = ref(storage,"images/")
+/*const rrr=()=>{
+  listAll(listRef)
+  .then((res)=>{
+    res.prefixes.forEach((folderRef)=>{
+
+    })
+    res.items.forEach((itemRef)=>{
+      console.log(itemRef)
+      //itemRef.u
+    })
+  }).catch((error)=>{
+    console.log(error)
+  })
+}
+
+//rrr()*/
 const getLocalItems = () => {
   const list = localStorage.getItem("lists");
   if (!list)
@@ -76,6 +98,7 @@ const Appointment = () => {
     })
   }
 
+  
   const button1 = () => {
     fsetcolor("yellow");
     setscolor("white");

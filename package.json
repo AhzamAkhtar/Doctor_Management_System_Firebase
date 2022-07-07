@@ -15,6 +15,7 @@
     "firebase": "^9.8.4",
     "firebase-tools": "^11.2.0",
     "jspdf": "^2.5.1",
+    "mvp.css": "^1.8.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.3.0",

@@ -1,80 +1,58 @@
-import { getDownloadURL, listAll, ref, uploadBytesResumable } from "firebase/storage";
-import React, { useEffect, useState } from "react";
-import {storage} from "./Firebase"
-const Uuload=()=>{
-    const [imageList,setImageList] = useState([])
-    //const [listpp,setlistpp] = useState([])
-    const imageListRef = ref(storage,"files/")
-    const [progress,setprogress] = useState(0)
-    const formHandler=(e)=>{
-        e.preventDefault()
-        const file = e.target[0].files[0]
-        uploadFIles(file)
-    }
-    const uploadFIles = (file)=>{
-        if (!file) return;
-        const storageRef = ref(storage,`/files/${file.name}`)
-        const uploadTask = uploadBytesResumable(storageRef,file)
-        uploadTask.on("state_changed",(snapshot)=>{
-            const prog = Math.round((snapshot.bytesTransferred/snapshot.totalBytes)*100)
-            setprogress(prog)
-        },(err)=>console.log(err),
-        ()=>{
-            getDownloadURL(uploadTask.snapshot.ref).then((url)=>console.log(url))
-        }
-        )
-    }
-    useEffect(()=>{
-        listAll(imageListRef).then((responce)=>{
-            responce.items.forEach((item)=>{
-                getDownloadURL(item).then((url)=>{
-                    setImageList((prev)=>[...prev,url])
-                })
-            })
-        })
-    },[])
-    /**useEffect(()=>{
-        
-            const arraypp = []
-            const listRef = ref(storage,"files/")
-            listAll(listRef)
-      .then((res) => {
-        res.prefixes.forEach((folderRef) => {
-            console.log(folderRef)
-          // All the prefixes under listRef.
-          // You may call listAll() recursively on them.
-        });
-        res.items.forEach((itemRef) => {
-            arraypp.push(itemRef)
-          // All the items under listRef.
-          console.log(itemRef)
-        });
-        setlistpp(arraypp)
-      }).catch((error) => {
-        // Uh-oh, an error occurred!
-      });
-        
-    },[])
-    console.log(listpp)*/
-    
-    return(
-        <>
-        <div>
-            <form onSubmit={formHandler}>
-                <input type="file" className="input"/>
-                <button type="submit">Upload</button>
-                
-                
-            </form>
-            <h3>Uploaded {progress} %</h3>
-            <div>
-               {imageList.map((url)=>{
-                return <img src={url}/>
-               })}
-            </div>
-        </div>
-        </>
+import React, { useState } from "react";
+import { render } from "react-dom";
+import { storage, } from "./Firebase";
+import {ref} from "firebase/storage"
+const Uupload = () => {
+  const [image, setImage] = useState(null);
+  const [url, setUrl] = useState("");
+  const [progress, setProgress] = useState(0);
 
-    )
-}
-export default Uuload
+  const handleChange = e => {
+    if (e.target.files[0]) {
+      setImage(e.target.files[0]);
+    }
+  };
+
+  const handleUpload = () => {
+    //const uploadTask = storage.ref(`images/${image.name}`).put(image);
+    const uploadTask = ref(storage,"images/${image.name}")
+    uploadTask.on(
+      "state_changed",
+      snapshot => {
+        const progress = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        setProgress(progress);
+      },
+      error => {
+        console.log(error);
+      },
+      () => {
+        storage
+          .ref("images")
+          .child(image.name)
+          .getDownloadURL()
+          .then(url => {
+            setUrl(url);
+          });
+      }
+    );
+  };
+
+  console.log("image: ", image);
+
+  return (
+    <div>
+      <progress value={progress} max="100" />
+      <br />
+      <br />
+      <input type="file" onChange={handleChange} />
+      <button onClick={handleUpload}>Upload</button>
+      <br />
+      {url}
+      <br />
+      <img src={url || "http://via.placeholder.com/300"} alt="firebase-image" />
+    </div>
+  );
+};
+export default Uupload
