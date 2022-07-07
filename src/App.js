@@ -23,7 +23,6 @@ import Psychiatry from "./Component/Psychiatry";
 import Allappointment from "./Component/Allappointment";
 import Uupload from "./Component/Uupload";
 import Upload from "./Component/Upload";
-import Uploadanother from "./Component/Uploadanother";
 function App() {
   return (
     <div>

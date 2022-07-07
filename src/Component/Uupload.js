@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { render } from "react-dom";
 import { storage, } from "./Firebase";
 import {ref} from "firebase/storage"
 const Uupload = () => {

@@ -6,6 +6,7 @@ import {
   getDownloadURL,
   listAll,
   list,
+  uploadBytesResumable,
 } from "firebase/storage";
 import { storage } from "./Firebase";
 import firebase from "firebase/compat/app";
@@ -16,6 +17,7 @@ import { async } from "@firebase/util";
 function Upload() {
   const [imageUpload, setImageUpload] = useState(null);
   const [imageUrls, setImageUrls] = useState([]);
+  const [progess,setProgress] = useState(0)
   const imagesListRef = ref(storage, "images/");
   const uploadFile = () => {
     if (imageUpload == null) return;
@@ -25,7 +27,11 @@ function Upload() {
     })
   }*/
     
-    uploadBytes(imageRef, imageUpload).then((snapshot) => {
+    uploadBytesResumable(imageRef, imageUpload).then((snapshot) => {
+      const conprogress = Math.round((
+        snapshot.bytesTransferred/snapshot.totalBytes
+      )*100)
+      setProgress(conprogress)
       getDownloadURL(snapshot.ref).then((url) => {
         console.log(url)
         setImageUrls((prev) => [...prev, url]);
@@ -58,6 +64,7 @@ function Upload() {
           console.log(url)
           //getdata.push(url)
           setImageUrls((prev)=>[...prev,url])
+        
         });
         
       });
@@ -76,10 +83,17 @@ function Upload() {
         }}
       />
       <button onClick={uploadFile}> Upload Image</button>
+      <h3>Progress {progess} %</h3>
       <button onClick={bro}>show</button>
       {imageUrls.map((url) => {
         return <img src={url} />;
       })}
+      {/*imageUrls.map((url) => {
+        return <iframe src={url} style={{width:"50%",height:"500px"}}/>
+      })*/}
+      {/*<iframe src={url} 
+      style={{width:"100%",height:"500px"}}>
+      </iframe>*/}
   
     </div>
   );
