@@ -18,6 +18,7 @@ import {
 import TypeofAssistance from "../TypeofAssistance";
 import Spinner from "./Spinner";
 import { Delete } from "@mui/icons-material";
+import { yellow } from "@mui/material/colors";
 firebase.initializeApp({
   apiKey: "AIzaSyBm0kPsibJol7yD3hIegei2uyWvkf9Jrgk",
   authDomain: "zakibhai-82e1f.firebaseapp.com",
@@ -52,7 +53,6 @@ const Allappointment = () => {
       .onSnapshot((quearySnapshot) => {
         quearySnapshot.forEach((doc) => {
           getPostsFromFirebase.push({ ...doc.data(), key: doc.id });
-          setdocid(doc.id)
           console.log(getPostsFromFirebase)
         });
         setPosts(getPostsFromFirebase);
@@ -126,7 +126,24 @@ const Allappointment = () => {
                   <h6 class="card-title" style={{color:"skyblue"}}>{"Doctor Email : "+item.Email}</h6>
                   <h6 class="card-title" style={{color:"skyblue"}}>{"Specialty : "+item.Specialty}</h6>
                   <h6 class="card-title" style={{color:"skyblue"}}>{"Doctor ID : "+item.key}</h6>
-                  
+                  <button
+                  onClick={()=>{
+                    setdocid(item.key)
+                    swal("Doctor Selected")
+                  }}
+              style={{
+                width: "60%",
+                borderRadius: "10px",
+                border: "None",
+                outlineColor: "green",
+                marginLeft: "20%",
+                height: "50px",
+                backgroundColor: "yellow",
+                marginTop:"5px",
+              }}
+            >
+              Select This Doctor
+            </button>
                 
                   <div style={{ marginTop: "50px" }}>
             <button
