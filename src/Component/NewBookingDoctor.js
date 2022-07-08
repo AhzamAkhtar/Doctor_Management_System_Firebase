@@ -41,7 +41,7 @@ const Allappointment = () => {
   const [Admin,setAdmin] = useState()
   const [loading, setLoading] = useState(true);
   const [posts, setPosts] = useState([]);
-  const [docid,setdocid] = useState("")
+  const [docid,setdocid] = useState([])
   const [noOfAppointment,setnoOfAppointment] = useState()
   useEffect(() => {
     checkForNoofAppointment()
@@ -53,6 +53,7 @@ const Allappointment = () => {
         quearySnapshot.forEach((doc) => {
           getPostsFromFirebase.push({ ...doc.data(), key: doc.id });
           setdocid(doc.id)
+          console.log(getPostsFromFirebase)
         });
         setPosts(getPostsFromFirebase);
         console.log(getPostsFromFirebase)
@@ -62,7 +63,6 @@ const Allappointment = () => {
     return () => subscribers();
   },[first,second]);
 
-  
 
  const checkforadmin=()=>{
   const tt= firestore.collection("Admin").doc("FjPti0vk37bwqH9bFMHI").get().then(dooc=>{
@@ -125,8 +125,9 @@ const Allappointment = () => {
                   <h6 class="card-title" style={{color:"red"}}>{"No of Appointment For Today : "+item.NoOFAppointment}</h6>
                   <h6 class="card-title" style={{color:"skyblue"}}>{"Doctor Email : "+item.Email}</h6>
                   <h6 class="card-title" style={{color:"skyblue"}}>{"Specialty : "+item.Specialty}</h6>
-                  <h6 class="card-title" style={{color:"skyblue"}}>{"Doctor ID : "+docid}</h6>
+                  <h6 class="card-title" style={{color:"skyblue"}}>{"Doctor ID : "+item.key}</h6>
                   
+                
                   <div style={{ marginTop: "50px" }}>
             <button
               onClick={() => {
