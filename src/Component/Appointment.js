@@ -10,6 +10,10 @@ import { getStorage } from "firebase/storage";
 import { ref } from "firebase/storage";
 import { listAll } from "firebase/storage";
 import { collection, query, where, getDocs, Firestore } from "firebase/firestore";
+import {doc,updateDoc,increment} from "firebase/firestore"
+
+import {array_doctorName} from "./NewBookingDoctor"
+import { async } from "@firebase/util";
 firebase.initializeApp({
   apiKey: "AIzaSyBm0kPsibJol7yD3hIegei2uyWvkf9Jrgk",
   authDomain: "zakibhai-82e1f.firebaseapp.com",
@@ -37,7 +41,6 @@ const listRef = ref(storage,"images/")
     console.log(error)
   })
 }
-
 //rrr()*/
 const getLocalItems = () => {
   const list = localStorage.getItem("lists");
@@ -88,6 +91,7 @@ const Appointment = () => {
       AppointmentTime:time,
       TimeStamp: firebase.firestore.FieldValue.serverTimestamp() 
     })
+    updateAppointment()
   }
    async function Allappointment(){
     const q= query(collection(firestore,"Patients"))
@@ -97,7 +101,16 @@ const Appointment = () => {
         console.log(doc.id,"=>",doc.data())
     })
   }
-
+ 
+  
+console.log(array_doctorName)
+console.log(array_doctorName[1])
+async function updateAppointment(){
+  const NoOFAppointment =doc(firestore,"Doctors",array_doctorName[1])
+  await updateDoc(NoOFAppointment,{
+    "NoOFAppointment" : increment(1)
+  })
+}
   
   const button1 = () => {
     fsetcolor("yellow");
@@ -137,7 +150,7 @@ const Appointment = () => {
     sett4c("skyblue");
     settime("18:00")
   };
-  var doc = new jsPDF("p","pt")
+  /**var doc = new jsPDF("p","pt")
  doc.setFont("courier-bold")
   doc.setFontSize(30)
   doc.text(150,35,"Pioneer Healtcare Pvt.Ltd")
@@ -180,7 +193,7 @@ const Appointment = () => {
   doc.text(300,500,time)
 
   doc.text(70,550,"Fees : ")
-doc.text(300,550,location.state.text)
+doc.text(300,550,location.state.text)*/
 
   return (
     <>
@@ -373,11 +386,11 @@ doc.text(300,550,location.state.text)
           </div>
          
 
-          {/*<button className="btn btn-warning" onClick={submit} style={{width:"100%",marginTop:"20px"}}>Submit</button>*/}
+         
         </div>
         <div className="sideimage">
          <div id="cardData">
-              {/*<h3 style={{textAlign:"center"}}>cardddd</h3>*/}
+             
               <div className="container my-3">
             <>
               <div className="row" style={{border:"2px"}}>
@@ -389,6 +402,7 @@ doc.text(300,550,location.state.text)
                           style={{height:'18rem',width:"18rem",marginTop:"10px"}}
                         />
                         <div class="card-body">
+                        <h5 class="card-title">{"Doctor-Name-"+array_doctorName[0]}</h5>
                           <h5 class="card-title">{location.state.title}</h5>
                           <span style={{color:"green"}}>{location.state.time}</span>
                           <p class="card-text">{location.state.text}</p>

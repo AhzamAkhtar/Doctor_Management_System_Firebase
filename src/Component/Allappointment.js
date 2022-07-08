@@ -136,6 +136,10 @@ const six=()=>{
   setfirst("AppointmentTime")
   setsecond("16:00")
 }
+const all=()=>{
+  setfirst("Appointment")
+  setsecond("True")
+}
 async function edit(idforEdit){
   const docRef = doc(firestore,"Patients",idforEdit)
   await updateDoc(docRef,{
@@ -149,6 +153,7 @@ async function edit(idforEdit){
   return (
     <>
     <div className="container my-5">
+    <button onClick={all} className="mx-2 my-3 btn btn-info" >All</button>
     <button onClick={nc} className="mx-2 my-3 btn btn-info" >Nutrition Counselling</button>
     <button onClick={gn} className="mx-2 my-3 btn btn-info">General Medicine</button>
     <button onClick={cp} className="mx-2 my-3 btn btn-info">Consultant Physician</button>

@@ -1,152 +1,185 @@
-import React, { Component } from 'react'
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField'
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import axios from 'axios';
-import swal from 'sweetalert';
+import React, { useEffect, useState } from "react";
 import firebase from "firebase/compat/app";
-import "firebase/compat/firestore";
-import "./index.css"
-export default class CreateDoctor extends Component {
-  
-    constructor(props) {
-      super(props)
-    
-      this.state = {
-         idDoctor:"",
-        doctorName:"",
-         doctorAge:"",
-        doctorPhoneNO:"",
-        doctorEmailId:""
-      }
-    }
+import "firebase/compat/firestore"
+const getLocalItems = () => {
+  const list = localStorage.getItem("lists");
+  if (!list)
+    return {
+      fname: "",
+      lname: "",
+      email: "",
+      phone: "",
+      spc: "",
+    };
+  return JSON.parse(list);
+};
+firebase.initializeApp({
+  apiKey: "AIzaSyBm0kPsibJol7yD3hIegei2uyWvkf9Jrgk",
+  authDomain: "zakibhai-82e1f.firebaseapp.com",
+  projectId: "zakibhai-82e1f",
+  storageBucket: "zakibhai-82e1f.appspot.com",
+  messagingSenderId: "304819231340",
+  appId: "1:304819231340:web:138ecefa39bb0880455649",
+  measurementId: "G-S3DTS3N8Y0",
+});
+const CreateDoctor = () => {
+  const firestore = firebase.firestore()
+  const [fullname, setfullname] = useState(getLocalItems);
+  const inputEvent = (event) => {
+    const { name, value } = event.target;
+    setfullname((preValue) => {
+      //console.log(preValue)
+      return {
+        ...preValue,
+        [name]: value,
+      };
+    });
+  };
+  useEffect(() => {
+    localStorage.setItem("lists", JSON.stringify(fullname));
+  }, [fullname]);
 
-    
-
-
-    onChange=(event)=>{
-        this.setState({
-            [event.target.name]:event.target.value
-        })
-    }
-
-    submitHandler=()=>{
-       swal("CONGRATULATIONS!" + "You Have Successfully Registered As A Doctor")
-        console.log("submit handler calling",this.state )
-        axios.post("http://localhost:8080/Doctor/CreateDoctor",this.state)
-        .then((response)=>{
-            alert("Doctor is Created")
-            this.setState({
-                doctorName:"",
-                doctorAge:"",
-               doctorPhoneNO:"",
-               doctorEmailId:""
-            })
-        })
-        .catch((error)=>{
-            console.log(error)
-        })
-
-    }
-  render() {
-    return (
-      <div className='main_div'> <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <Box
-        sx={{
-          marginTop: 8,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
-        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Register As A Doctor
-        </Typography>
-        <Box component="form" noValidate  sx={{ mt: 3 }}>
-          <Grid container spacing={2}>
-           
-            <Grid item xs={12} >
-              <TextField
-              onChange={this.onChange}
-                required
-                fullWidth
-               value={this.state.doctorName}
-                label="Doctor Name"
-                name="doctorName"
-                autoComplete="family-name"
-              />
-            </Grid>
-            
-            <Grid item xs={12} >
-              <TextField
-              onChange={this.onChange}
-                required
-                fullWidth
-                type="number"
-                value={this.state.doctorPhoneNO}
-                label="Doctor phone"
-                name="doctorPhoneNO"
-               
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-              onChange={this.onChange}
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="doctorEmailId"
-                value={this.state.doctorEmailId}
-                autoComplete="email"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-              onChange={this.onChange}
-                required
-                fullWidth
-                type="number"
-                value={this.state.doctorAge}
-                label="Doctor Age"
-                name="doctorAge"
-                
-              
-               
-              />
-            </Grid>
-           
-          </Grid>
-          <Button style={{borderRadius:"50px",backgroundColor:"purple"}}
-          onClick={this.submitHandler}
-            type="button"
-            fullWidth
-            variant="contained"
-            
-            sx={{ mt: 3, mb: 2 }}
-            
-          >
-            Register As a Doctor
-          </Button>
-         
-        </Box>
-      </Box>
-    
-    </Container></div>
-    )
+  const addToFirebase=()=>{
+    firestore.collection("Doctors").add({
+      Doctor:"True",
+      NoOFAppointment:0,
+      FirestName:fullname.fname,
+      LastName:fullname.lname,
+      Email:fullname.email,
+      Number:fullname.phone,
+      Specialty:fullname.spc
+    })
   }
-}
+  return (
+    <>
+      <div className="main_div">
+        <div>
+          <h2 style={{ textAlign: "center", marginTop: "10px" }}>
+            Book Your Appointment Now
+          </h2>
+          <div></div>
+          <h5 style={{ marginLeft: "10px" }}>Enter Your Name</h5>
+          <input
+            style={{
+              width: "80%",
+              marginLeft: "30px",
+              marginTop: "10px",
+              width: "50%",
+              marginBottom: "10px",
+              height: "5%",
+              border: "None",
+              outlineColor: "lightblue",
+              borderRadius: "2px",
+            }}
+            type="text"
+            placeholder="Enter Your Name"
+            name="fname"
+            onChange={inputEvent}
+            value={fullname.fname}
+          />
+          <br />
+          <h5 style={{ marginLeft: "10px" }}>Enter Your Last Name</h5>
+          <input
+            style={{
+              width: "80%",
+              marginLeft: "30px",
+              marginTop: "10px",
+              width: "50%",
+              marginBottom: "10px",
+              height: "5%",
+              border: "None",
+              outlineColor: "lightblue",
+              borderRadius: "2px",
+            }}
+            type="text"
+            placeholder="Enter Your last name"
+            name="lname"
+            onChange={inputEvent}
+            value={fullname.lname}
+          />
+          <br />
+          <h5 style={{ marginLeft: "10px" }}>Enter Your Email</h5>
+          <input
+            style={{
+              width: "80%",
+              marginLeft: "30px",
+              marginTop: "10px",
+              width: "50%",
+              marginBottom: "10px",
+              height: "5%",
+              border: "None",
+              outlineColor: "lightblue",
+              borderRadius: "2px",
+            }}
+            type="text"
+            placeholder="Enter Your Email"
+            name="email"
+            onChange={inputEvent}
+            value={fullname.email}
+          />
+          <br />
+          <h5 style={{ marginLeft: "10px" }}>Enter Your Number</h5>
+
+          <input
+            style={{
+              width: "80%",
+              marginLeft: "30px",
+              marginTop: "10px",
+              width: "50%",
+              marginBottom: "10px",
+              height: "5%",
+              border: "None",
+              outlineColor: "lightblue",
+              borderRadius: "2px",
+            }}
+            type="text"
+            placeholder="Enter Your Number"
+            name="phone"
+            onChange={inputEvent}
+            value={fullname.phone}
+          />
+          <h5 style={{ marginLeft: "10px" }}>Enter Your Speciality</h5>
+          <input
+            style={{
+              width: "80%",
+              marginLeft: "30px",
+              marginTop: "10px",
+              width: "50%",
+              marginBottom: "10px",
+              height: "5%",
+              border: "None",
+              outlineColor: "lightblue",
+              borderRadius: "2px",
+            }}
+            type="text"
+            placeholder="Enter Your Speciality"
+            name="spc"
+            onChange={inputEvent}
+            value={fullname.spc}
+          />
+
+          <div style={{ marginTop: "50px" }}>
+            <button
+              onClick={() => {
+                addToFirebase();
+                //doc.save("Appointment-Recipt.pdf")
+              }}
+              style={{
+                width: "60%",
+                borderRadius: "10px",
+                border: "None",
+                outlineColor: "green",
+                marginLeft: "20%",
+                height: "50px",
+                backgroundColor: "#f72585",
+              }}
+            >
+              Register
+            </button>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+export default CreateDoctor;

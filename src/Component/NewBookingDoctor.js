@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
+import { array } from "../TypeofAssistance";
+import { useNavigate,useLocation } from "react-router-dom";
+import swal from "sweetalert";
 import {
   updateDoc,
     getDoc,
@@ -24,15 +27,24 @@ firebase.initializeApp({
   appId: "1:304819231340:web:138ecefa39bb0880455649",
   measurementId: "G-S3DTS3N8Y0",
 });
+const array_doctorName = []
 const firestore = firebase.firestore();
 const Allappointment = () => {
-  const [first,setfirst] = useState("Doctor")
-  const [second,setsecond] = useState("True")
+    const navigate = useNavigate()
+    const location = useLocation()
+    console.log(location.state)
+    console.log(location.state.title)
+    console.log(array[0])
+  const [first,setfirst] = useState("Specialty")
+  const [second,setsecond] = useState(array[0])
   const [Filter,setFilter] = useState([])
   const [Admin,setAdmin] = useState()
   const [loading, setLoading] = useState(true);
   const [posts, setPosts] = useState([]);
+  const [docid,setdocid] = useState("")
+  const [noOfAppointment,setnoOfAppointment] = useState()
   useEffect(() => {
+    checkForNoofAppointment()
     const getPostsFromFirebase = [];
     const subscribers = firestore
       .collection("Doctors")
@@ -40,6 +52,7 @@ const Allappointment = () => {
       .onSnapshot((quearySnapshot) => {
         quearySnapshot.forEach((doc) => {
           getPostsFromFirebase.push({ ...doc.data(), key: doc.id });
+          setdocid(doc.id)
         });
         setPosts(getPostsFromFirebase);
         console.log(getPostsFromFirebase)
@@ -74,44 +87,16 @@ const Allappointment = () => {
   filter()
  },[])*/
 
+ const checkForNoofAppointment=()=>{
+    firestore.collection("Doctors").doc(array_doctorName[1]).get().then(doc=>{
+      console.log(doc.data().NoOFAppointment)
+      setnoOfAppointment(doc.data().NoOFAppointment)
+    })
+  }
+  
 
 
-const nc=()=>{
-  setfirst("Specialty")
-  setsecond("Nutrition Counselling")
-}
-const gn=()=>{
-  setfirst("Specialty")
-  setsecond("General Medicine")
-}
-const cp=()=>{
-  setfirst("Specialty")
-  setsecond("Consultant Physician")
-}
-const gy=()=>{
-  setfirst("Specialty")
-  setsecond("Gynecology")
-}
-const ped=()=>{
-  setfirst("Specialty")
-  setsecond("Pediatrics")
-}
-const der=()=>{
-  setfirst("Specialty")
-  setsecond("Dermatology")
-}
-const orth=()=>{
-  setfirst("Specialty")
-  setsecond("Orthopedics")
-}
-const psy=()=>{
-  setfirst("Specialty")
-  setsecond("Psychiatry")
-}
-const all=()=>{
-  setfirst("Doctor")
-  setsecond("True")
-}
+
 
 
 /*async function edit(idforEdit){
@@ -127,15 +112,6 @@ const all=()=>{
   return (
     <>
     <div className="container my-5">
-    <button onClick={all} className="mx-2 my-3 btn btn-info" >All</button>
-    <button onClick={nc} className="mx-2 my-3 btn btn-info" >Nutrition Counselling</button>
-    <button onClick={gn} className="mx-2 my-3 btn btn-info">General Medicine</button>
-    <button onClick={cp} className="mx-2 my-3 btn btn-info">Consultant Physician</button>
-    <button onClick={gy} className="mx-2 my-3 btn btn-info">Gynecology</button>
-    <button onClick={ped} className="mx-2 my-3 btn btn-info">Pediatrics</button>
-    <button onClick={der} className="mx-2 my-3 btn btn-info">Dermatology</button>
-    <button onClick={orth} className="mx-2 my-3 btn btn-info">Orthopedics</button>
-    <button onClick={psy} className="mx-2 my-3 btn btn-info">Psychiatry</button>
     <>
     <div className="row" style={{border:"2px"}}>
       {posts.length > 0 ? (
@@ -146,11 +122,38 @@ const all=()=>{
               <div class="card">
                 <div class="card-body">
                   <h5 class="card-title" style={{color:"green"}}>{"Doctor Name : "+item.FirestName} {item.LastName}</h5>
-                  <h6 class="card-title" style={{color:"red"}}>{"No of Appointment For Today  : "+item.NoOFAppointment}</h6>
-                  <h6 class="card-title" style={{color:"skyblue"}}>{"Doctor Name : "+item.Email}</h6>
+                  <h6 class="card-title" style={{color:"red"}}>{"No of Appointment For Today : "+item.NoOFAppointment}</h6>
+                  <h6 class="card-title" style={{color:"skyblue"}}>{"Doctor Email : "+item.Email}</h6>
                   <h6 class="card-title" style={{color:"skyblue"}}>{"Specialty : "+item.Specialty}</h6>
+                  <h6 class="card-title" style={{color:"skyblue"}}>{"Doctor ID : "+docid}</h6>
                   
-                
+                  <div style={{ marginTop: "50px" }}>
+            <button
+              onClick={() => {
+                if(noOfAppointment>9){
+                    swal("Error")
+                }else{
+                    navigate("/Appointment",{state:location.state})
+                }
+                array_doctorName.push(item.LastName)
+                array_doctorName.push(docid)
+               
+                //addToFirebase();
+                //doc.save("Appointment-Recipt.pdf")
+              }}
+              style={{
+                width: "60%",
+                borderRadius: "10px",
+                border: "None",
+                outlineColor: "green",
+                marginLeft: "20%",
+                height: "50px",
+                backgroundColor: "#f72585",
+              }}
+            >
+              Proceed
+            </button>
+          </div>
                 </div>
               </div>
               </div>
@@ -167,3 +170,4 @@ const all=()=>{
   );
 };
 export default Allappointment;
+export {array_doctorName}

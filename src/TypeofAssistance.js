@@ -63,12 +63,17 @@ const Data=[
     
 ]
 
+const array=[]
 //const [type,settype]=useState("General Medicine")
 //let navigate = useNavigate()
 const TypeofAssistance = () => {
+  function clear(){
+
+  }
+  //const [selected,setSelected] = useState("")
     let navigate = useNavigate()
-    const [type,settype]=useState("")
-  return (
+   console.log(array)
+    return (
     <>
       <div className="main_news">
       <h1 className="text-center" style={{marginTop:"10px"}}>Select Your Specialty</h1>
@@ -95,29 +100,53 @@ const TypeofAssistance = () => {
                           <button class="btn btn-success"
                           onClick={()=>{
                             if(item.title=="General Medicine"){
-                              navigate("/General",{state:item})
+                              //array=[]
+                              array.pop(0)
+                              array.push(item.title)
+                              navigate("/NewBookingDoctor",{state:item})
                             }
                             if(item.title=="Consultant Physician"){
-                              navigate("/ConsultantPhysician",{state:item})
+                              //array=[]
+                              array.pop(0)
+                              array.push(item.title)
+                              navigate("/NewBookingDoctor",{state:item})
                             }
                             if(item.title=="Gynecology"){
-                              navigate("/Gynecology",{state:item})
+                              //array=[]
+                              array.pop(0)
+                              array.push(item.title)
+                              navigate("/NewBookingDoctor",{state:item})
                             }
                             if(item.title=="Pediatrics"){
-                              navigate("/Pediatrics",{state:item})
+                              //array=[]
+                              array.pop(0)
+                              array.push(item.title)
+                              navigate("/NewBookingDoctor",{state:item})
                             }
                             if(item.title=="Dermatology"){
-                              navigate("/Dermatology",{state:item})
+                              //array=[]
+                              array.pop(0)
+                              array.push(item.title)
+                              navigate("/NewBookingDoctor",{state:item})
                             }
                             
                             if(item.title=="Nutrition Counselling"){
-                              navigate("/Nutritioncounselling",{state:item})
+                              //array=[]
+                              array.pop(0)
+                              array.push(item.title)
+                              navigate("/NewBookingDoctor",{state:item})
                             }
                             if(item.title=="Orthopedics"){
-                              navigate("/Orthopedics",{state:item})
+                              //array=[]
+                              array.pop(0)
+                              array.push(item.title)
+                              navigate("/NewBookingDoctor",{state:item})
                             }
                             if(item.title=="Psychiatry"){
-                              navigate("/Psychiatry",{state:item})
+                              //array=[]
+                              array.pop(0)
+                              array.push(item.title)
+                              navigate("/NewBookingDoctor",{state:item})
                             }
                           }} 
                           >Selct Your Doctor</button>
@@ -137,3 +166,4 @@ const TypeofAssistance = () => {
   );
 };
 export default TypeofAssistance;
+export {array}
