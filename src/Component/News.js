@@ -11,7 +11,7 @@ const News = () => {
     const gnewsapi = async () => {
       setspin(true);
       //let url = `https://newsapi.org/v2/top-headlines?country=${country}&category=${queary}&apiKey=097575c06ecd4bc4b550fae79a2bd131`;
-      const url = `https://gnews.io/api/v4/top-headlines?&token=b2cc9ca74c1f3ad3403c04fd9a92b8c3
+      const url = `https://gnews.io/api/v4/top-headlines?&token=f1d8a882ca73d2f674a31e1339b923eb
             &country=${country}&topic=${queary}`;
       //https://newsapi.org/v2/top-headlines?country=in&category=health&apiKey=097575c06ecd4bc4b550fae79a2bd131
       //const url = `https://gnews.io/api/v4/search?q=example&token=a3bd46c42dd12ae35906909a6c7b3556&q=${queary}`;
