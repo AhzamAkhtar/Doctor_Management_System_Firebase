@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Doctor_Management_System_Firebase/static/css/main.b370ad97.css",
-    "main.js": "/Doctor_Management_System_Firebase/static/js/main.1f8d0b83.js",
+    "main.js": "/Doctor_Management_System_Firebase/static/js/main.24260c2f.js",
     "static/js/498.8ce10f5f.chunk.js": "/Doctor_Management_System_Firebase/static/js/498.8ce10f5f.chunk.js",
     "static/js/703.547a33cd.chunk.js": "/Doctor_Management_System_Firebase/static/js/703.547a33cd.chunk.js",
     "static/js/513.0d2b79c0.chunk.js": "/Doctor_Management_System_Firebase/static/js/513.0d2b79c0.chunk.js",
@@ -24,7 +24,7 @@
     "index.html": "/Doctor_Management_System_Firebase/index.html",
     "static/media/logo.svg": "/Doctor_Management_System_Firebase/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "main.b370ad97.css.map": "/Doctor_Management_System_Firebase/static/css/main.b370ad97.css.map",
-    "main.1f8d0b83.js.map": "/Doctor_Management_System_Firebase/static/js/main.1f8d0b83.js.map",
+    "main.24260c2f.js.map": "/Doctor_Management_System_Firebase/static/js/main.24260c2f.js.map",
     "498.8ce10f5f.chunk.js.map": "/Doctor_Management_System_Firebase/static/js/498.8ce10f5f.chunk.js.map",
     "703.547a33cd.chunk.js.map": "/Doctor_Management_System_Firebase/static/js/703.547a33cd.chunk.js.map",
     "513.0d2b79c0.chunk.js.map": "/Doctor_Management_System_Firebase/static/js/513.0d2b79c0.chunk.js.map",
@@ -32,6 +32,6 @@
   },
   "entrypoints": [
     "static/css/main.b370ad97.css",
-    "static/js/main.1f8d0b83.js"
+    "static/js/main.24260c2f.js"
   ]
 }
