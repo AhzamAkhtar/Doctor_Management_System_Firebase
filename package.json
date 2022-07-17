@@ -1,5 +1,6 @@
 {
   "name": "doctor",
+  "homepage": "https://AhzamAkhtar.github.io/Doctor_Management_System_Firebase",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -14,6 +15,7 @@
     "axios": "^0.26.1",
     "firebase": "^9.8.4",
     "firebase-tools": "^11.2.0",
+    "gh-pages": "^4.0.0",
     "jspdf": "^2.5.1",
     "mvp.css": "^1.8.0",
     "react": "^18.0.0",
@@ -29,6 +31,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

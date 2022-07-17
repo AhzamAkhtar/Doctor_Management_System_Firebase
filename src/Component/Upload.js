@@ -88,9 +88,9 @@ function Upload() {
           setImageUpload(event.target.files[0]);
         }}
       />
-      <button onClick={uploadFile}> Upload Image</button>
+      <button className="btn btn-info" onClick={uploadFile}> Upload Image</button>
       <progess>Progress {progess} %</progess>
-      <button onClick={bro}>show</button>
+      <button className="btn btn-warning" onClick={bro}>Show All Images</button>
       {imageUrls.map((url) => {
         return <img src={url} />;
       })}

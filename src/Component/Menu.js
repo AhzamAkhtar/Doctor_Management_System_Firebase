@@ -81,7 +81,7 @@ const Menu = () =>{
                 width:"50rem",
                 borderRadius:"50px",
                 
-              }}><a className="button_text" style={{textDecoration:"None",color:"white"}} href="/Allappointment">See All Your Appointment</a></button>
+              }}><a className="button_text" style={{textDecoration:"None",color:"white"}} href="/Allappointment">See All  Appointment</a></button>
         </div>
         </div>
 

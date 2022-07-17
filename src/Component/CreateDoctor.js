@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore"
+import swal from "sweetalert";
 const getLocalItems = () => {
   const list = localStorage.getItem("lists");
   if (!list)
@@ -163,6 +164,7 @@ const CreateDoctor = () => {
               onClick={() => {
                 addToFirebase();
                 //doc.save("Appointment-Recipt.pdf")
+                swal("Registration Completed!!")
               }}
               style={{
                 width: "60%",

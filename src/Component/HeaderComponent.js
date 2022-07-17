@@ -1,8 +1,14 @@
 import React, { Component } from 'react'
 import "./index.css"
 import News from './News'
+import bc from "./bc.jpg"
+import tc from "./tc.jpg"
+import zx from "./zx.jpg"
+
+//import v1 from "./Component/v1.jpg"
 //import first from "./Images/pexels-pixabay-40568.jpg"
 import Testimonal from "./Testimonal"
+import Menu from './Menu'
 export default class HeaderComponent extends Component {
     constructor(props) {
       super(props)
@@ -21,9 +27,9 @@ export default class HeaderComponent extends Component {
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
   </div>
-  <div class="carousel-inner" id='container'>
+  <div class="carousel-inner" id='container'>  
     <div class="carousel-item active">
-      <img style={{height:"31rem"}} src="pexels-pixabay-263402.jpg" class="d-block w-100 " alt=".."/>
+      <img style={{height:"31rem"}} src={tc} class="d-block w-100 " alt=".."/>
       <div className='centered'>
         <h2>"Wherever the art of Medicine is loved, there is also a love of Humanity. ”
 
@@ -31,7 +37,7 @@ export default class HeaderComponent extends Component {
       </div>
     </div>
     <div class="carousel-item" id='container'>
-      <img style={{height:"31rem"}} src="pexels-linkedin-sales-navigator-2182979.jpg" class="d-block w-100" alt="..."/>
+      <img style={{height:"31rem"}} src={bc} class="d-block w-100" alt="..."/>
       <div className='centered'>
         <h2>In our job, you will never go home at the end of the day thinking that you haven’t done something valuable and important.”
 
@@ -39,7 +45,7 @@ export default class HeaderComponent extends Component {
       </div>
     </div>
     <div class="carousel-item" id='container'>
-      <img style={{height:"31rem"}} src="pexels-total-shape-2383010.jpg" class="d-block w-100" alt="..."/>
+      <img style={{height:"31rem"}} src={zx} class="d-block w-100" alt="..."/>
       <div className='centered' >
         <h2>"People pay the doctor for his trouble; for his kindness they still remain in his debt."
 
@@ -62,6 +68,8 @@ export default class HeaderComponent extends Component {
             <div style={{marginLeft:"43%"}}><a style={{color:"yellow"}} href="https://javaguides.net"  className="navbar-brand">PIONEER HEALTHCARE</a></div>
             </nav>
         </header>
+
+        
 
         
 

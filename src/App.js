@@ -5,7 +5,7 @@ import DoctorList from "./Component/DoctorList";
 import FooterComponent from "./Component/FooterComponent";
 import CreateDoctor from "./Component/CreateDoctor";
 import UpdateDoctor from "./Component/UpdateDoctor";
-import {BrowserRouter as Router ,Routes,Route,Link} from "react-router-dom";
+import {BrowserRouter as Router ,Routes,Route,Link, BrowserRouter} from "react-router-dom";
 import Menu from "./Component/Menu";
 import Testimonal from "./Component/Testimonal";
 import Appointment from "./Component/Appointment";
@@ -55,14 +55,19 @@ function App() {
     
 
 
-      {/* <UpdateDoctor/>
+      {/*<UpdateDoctor/>
      <CreateDoctor/>
       */}
       {/* </div> */}
+
+      
+    
+      
      <Map/>
       <News/>
       <Testimonal />
      <FooterComponent />
+  
     </div>
   );
 }
