@@ -32,12 +32,13 @@ function App() {
 
     <HeaderComponent/>
     <BrowserRouter>
+
    <div>
       <Routes>
-        <Route exact path="/Doctor_Management_System_Firebase" element={<Menu/>}/>
-        <Route  path="/createdoctor" element={<CreateDoctor/>}/>
-        <Route path="/doctorlist" element={<DoctorList/>}/>
-        <Route path="/TypeofAssistance" element={<TypeofAssistance/>}/>
+        <Route exact path="/" element={<Menu/>}/>
+        <Route exact path="/createdoctor" element={<CreateDoctor/>}/>
+        <Route exact path="/doctorlist" element={<DoctorList/>}/>
+        <Route exact path="/TypeofAssistance" element={<TypeofAssistance/>}/>
         <Route path="/Appointment" element={<Appointment/>}/>
         <Route path="/General" element={<General/>}/>
         <Route path="/ConsultantPhysician" element={<ConsultantPhysician/>}/>
@@ -55,6 +56,7 @@ function App() {
       
      </Routes>
      </div>
+   
      </BrowserRouter>
       
 
