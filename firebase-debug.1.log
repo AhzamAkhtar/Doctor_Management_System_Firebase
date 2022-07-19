@@ -1,0 +1,53 @@
+[debug] [2022-07-18T14:40:20.608Z] ----------------------------------------------------------------------
+[debug] [2022-07-18T14:40:20.611Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\ahzam\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2022-07-18T14:40:20.612Z] CLI Version:   11.2.0
+[debug] [2022-07-18T14:40:20.612Z] Platform:      win32
+[debug] [2022-07-18T14:40:20.612Z] Node Version:  v16.13.0
+[debug] [2022-07-18T14:40:20.614Z] Time:          Mon Jul 18 2022 20:10:20 GMT+0530 (India Standard Time)
+[debug] [2022-07-18T14:40:20.614Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-07-18T14:40:20.732Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-07-18T14:40:20.734Z] > authorizing via signed-in user (ahzam8186@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\ahzam\reacttut\zaki
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2022-07-18T14:41:11.051Z] Using project from CLI flag: zakibhai-82e1f
+[debug] [2022-07-18T14:41:11.054Z] > refreshing access token with scopes: []
+[debug] [2022-07-18T14:41:11.058Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2022-07-18T14:41:11.058Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2022-07-18T14:41:11.101Z] Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
+
+For CI servers and headless environments, generate a new token with firebase login:ci
+[debug] [2022-07-18T14:41:11.111Z] FirebaseError: Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
+
+For CI servers and headless environments, generate a new token with firebase login:ci
+    at invalidCredentialError (C:\Users\ahzam\AppData\Roaming\npm\node_modules\firebase-tools\lib\auth.js:145:12)
+    at refreshTokens (C:\Users\ahzam\AppData\Roaming\npm\node_modules\firebase-tools\lib\auth.js:509:15)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async Client.getAccessToken (C:\Users\ahzam\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:148:23)
+    at async Client.addAuthHeader (C:\Users\ahzam\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:139:21)
+    at async Client.request (C:\Users\ahzam\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:95:34)
+    at async getFirebaseProject (C:\Users\ahzam\AppData\Roaming\npm\node_modules\firebase-tools\lib\management\projects.js:296:21)
+    at async doSetup (C:\Users\ahzam\AppData\Roaming\npm\node_modules\firebase-tools\lib\init\features\project.js:85:27)
+    at async init (C:\Users\ahzam\AppData\Roaming\npm\node_modules\firebase-tools\lib\init\index.js:36:9)
+[error] 
+[error] Error: Failed to get Firebase project zakibhai-82e1f. Please make sure the project exists and your account has permission to access it.

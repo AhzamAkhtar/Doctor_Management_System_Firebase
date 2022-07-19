@@ -24,10 +24,14 @@ const Menu = () =>{
                 marginTop: "20px",
                 width:"50rem",
                 borderRadius:"50px"
-        
+              
+              }}
+              onClick={(e)=>{
+                e.preventDefault()
+                navigate("/DoctorList")
               }}
             >
-              <a className="button_text" style={{textDecoration:"None",color:"white"}} href="/DoctorList">See Your World Class Doctors</a>
+              <a className="button_text" style={{textDecoration:"None",color:"white"}} >See Your World Class Doctors</a>
             </button>
           </div>
         </div>
@@ -44,8 +48,11 @@ const Menu = () =>{
                 width:"50rem",
                 borderRadius:"50px"
               }}
+              onClick={()=>{
+                navigate("/CreateDoctor")
+              }}
             >
-              <a className="button_text" style={{textDecoration:"None",color:"white"}} href="/CreateDoctor#top">Register As A Doctor</a>
+              <a className="button_text" style={{textDecoration:"None",color:"white"}} >Register As A Doctor</a>
             </button>
           </div>
         </div>  
@@ -54,7 +61,8 @@ const Menu = () =>{
           <button 
           type="button"
               class="btn btn-success"
-          onClick={()=>{
+          onClick={(e)=>{
+            e.preventDefault()
             navigate("/TypeofAssistance")
           }} style={{
                 position: "relative",
@@ -63,7 +71,7 @@ const Menu = () =>{
                 width:"50rem",
                 borderRadius:"50px",
                 
-              }}><a className="button_text" style={{textDecoration:"None",color:"white"}} href="/TypeofAssistance">Book Your Appointment Now</a></button>
+              }}><a className="button_text" style={{textDecoration:"None",color:"white"}} >Book Your Appointment Now</a></button>
         </div>
         </div>
 
@@ -72,7 +80,8 @@ const Menu = () =>{
           <button 
           type="button"
               class="btn btn-success"
-          onClick={()=>{
+          onClick={(e)=>{
+            e.preventDefault()
             navigate("/Allappointment")
           }} style={{
                 position: "relative",
@@ -81,7 +90,7 @@ const Menu = () =>{
                 width:"50rem",
                 borderRadius:"50px",
                 
-              }}><a className="button_text" style={{textDecoration:"None",color:"white"}} href="/Allappointment">See All  Appointment</a></button>
+              }}><a className="button_text" style={{textDecoration:"None",color:"white"}} >See All  Appointment</a></button>
         </div>
         </div>
 
@@ -90,7 +99,8 @@ const Menu = () =>{
           <button 
           type="button"
               class="btn btn-success"
-          onClick={()=>{
+          onClick={(e)=>{
+            e.preventDefault()
             navigate("/Upload")
           }} style={{
                 position: "relative",
@@ -99,7 +109,7 @@ const Menu = () =>{
                 width:"50rem",
                 borderRadius:"50px",
                 
-              }}><a className="button_text" style={{textDecoration:"None",color:"white"}} href="/Upload">Upload</a></button>
+              }}><a className="button_text" style={{textDecoration:"None",color:"white"}} >Upload</a></button>
         </div>
         </div>
 

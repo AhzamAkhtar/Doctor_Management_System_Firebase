@@ -72,7 +72,7 @@ function App() {
       
     
      <Map/>
-
+<News/>
       <Testimonal />
      <FooterComponent />
  
