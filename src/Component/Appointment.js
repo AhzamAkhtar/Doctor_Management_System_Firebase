@@ -1,7 +1,7 @@
 import { Usb } from "@mui/icons-material";
 import React, { useEffect, useState } from "react";
 import swal from 'sweetalert'
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate,Link } from "react-router-dom";
 import "./index.css";
 import jsPDF from "jspdf";
 import firebase from "firebase/compat/app"
@@ -11,7 +11,6 @@ import { ref } from "firebase/storage";
 import { listAll } from "firebase/storage";
 import { collection, query, where, getDocs, Firestore } from "firebase/firestore";
 import {doc,updateDoc,increment} from "firebase/firestore"
-
 import {array_doctorName} from "./NewBookingDoctor"
 import { async } from "@firebase/util";
 firebase.initializeApp({
@@ -23,6 +22,7 @@ firebase.initializeApp({
   appId: "1:304819231340:web:138ecefa39bb0880455649",
   measurementId: "G-S3DTS3N8Y0"
 })
+
 const firestore = firebase.firestore()
 const storage = getStorage()
 
@@ -54,6 +54,7 @@ const getLocalItems = () => {
   return JSON.parse(list);
 };
 const Appointment = () => {
+  const navigate = useNavigate()
  const location=useLocation()
  console.log(location.state)
   const [fullname, setfullname] = useState(getLocalItems);
@@ -365,12 +366,16 @@ docD.text(300,550,location.state.text)
             18:00
           </button>
           <div style={{ marginTop: "50px" }}>
-            <button onClick={()=>{
+            <button onClick={(e)=>{
               updateAppointment()
               Allappointment()
               addToFirebase()
               swal("CONGRATULATIONS  "+ `${fullname.fname}`,"Your Appointment has Been Successfully Booked  for " + `${location.state.title}` + ", A Confirmation  Has Been Downloaded." + " Thanks For Choosing Us!","success")
               docD.save("Appointment-Recipt.pdf")
+              navigate("/")
+              setTimeout(()=>{
+                window.location.reload(false)
+              },1000)
             }}
               style={{
                 width: "60%",

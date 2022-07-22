@@ -53,10 +53,10 @@ const Allappointment = () => {
       .onSnapshot((quearySnapshot) => {
         quearySnapshot.forEach((doc) => {
           getPostsFromFirebase.push({ ...doc.data(), key: doc.id });
-          console.log(getPostsFromFirebase);
+          //console.log(getPostsFromFirebase);
         });
         setPosts(getPostsFromFirebase);
-        console.log(getPostsFromFirebase);
+        //console.log(getPostsFromFirebase);
         setLoading(false);
       });
 
@@ -69,7 +69,7 @@ const Allappointment = () => {
       .doc("FjPti0vk37bwqH9bFMHI")
       .get()
       .then((dooc) => {
-        console.log(dooc.data().Passward);
+        //console.log(dooc.data().Passward);
         setAdmin(dooc.data().Passward);
       });
     //const rr = Object.values(tt)
@@ -96,7 +96,7 @@ const Allappointment = () => {
       .doc(array_doctorName[1])
       .get()
       .then((doc) => {
-        console.log(doc.data().NoOFAppointment);
+        //console.log(doc.data().NoOFAppointment);
         setnoOfAppointment(doc.data().NoOFAppointment);
       });
   };
