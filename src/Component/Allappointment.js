@@ -32,6 +32,7 @@ const Allappointment = () => {
   const [Admin,setAdmin] = useState()
   const [loading, setLoading] = useState(true);
   const [posts, setPosts] = useState([]);
+  
   useEffect(() => {
     const getPostsFromFirebase = [];
     const subscribers = firestore
@@ -46,9 +47,14 @@ const Allappointment = () => {
         setLoading(false);
       });
 
+    
+
     return () => subscribers();
   },[first,second]);
 
+
+
+  
   const admin=(id)=>{
      const adminarray =[];
     const admin_verfy = firestore.collection("Admin").onSnapshot((quearySnapshot)=>{

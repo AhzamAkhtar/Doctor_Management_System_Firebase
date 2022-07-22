@@ -91,7 +91,7 @@ const Appointment = () => {
       AppointmentTime:time,
       TimeStamp: firebase.firestore.FieldValue.serverTimestamp() 
     })
-    updateAppointment()
+    
   }
    async function Allappointment(){
     const q= query(collection(firestore,"Patients"))
@@ -150,50 +150,50 @@ async function updateAppointment(){
     sett4c("skyblue");
     settime("18:00")
   };
-  /**var doc = new jsPDF("p","pt")
- doc.setFont("courier-bold")
-  doc.setFontSize(30)
-  doc.text(150,35,"Pioneer Healtcare Pvt.Ltd")
-  doc.setFontSize(20)
-  doc.text(200,70,"Appointment Recipt")
-  doc.setFontSize(20)
+  var docD = new jsPDF("p","pt")
+ docD.setFont("courier-bold")
+  docD.setFontSize(30)
+  docD.text(150,35,"Pioneer Healtcare Pvt.Ltd")
+  docD.setFontSize(20)
+  docD.text(200,70,"Appointment Recipt")
+  docD.setFontSize(20)
 
   const date = new Date()
   const n = date.toDateString()
 
-  doc.text(70,150,"Date Of Booking : ")
-  doc.text(300,150,n)
+  docD.text(70,150,"Date Of Booking : ")
+  docD.text(300,150,n)
 
   
 
-  doc.text(70,200,"Patient First Name : ")
-  doc.text(300,200,fullname.fname)
+  docD.text(70,200,"Patient First Name : ")
+  docD.text(300,200,fullname.fname)
 
-  doc.text(70,250,"Patient Last Name : ")
-  doc.text(300,250,fullname.lname)
-
-
-  doc.text(70,300,"Type of Assistance : ")
-  doc.text(300,300,location.state.title)
+  docD.text(70,250,"Patient Last Name : ")
+  docD.text(300,250,fullname.lname)
 
 
-  //doc.text(70,300,"Patient Last Name : ")
-  //doc.text(300,300,fullname.lname)
+  docD.text(70,300,"Type of Assistance : ")
+  docD.text(300,300,location.state.title)
 
-  doc.text(70,350,"Patient Email : ")
-  doc.text(300,350,fullname.email)
 
-  doc.text(70,400,"Patient PhoneNumber : ")
-  doc.text(300,400,fullname.phone)
+  //docD.text(70,300,"Patient Last Name : ")
+  //docD.text(300,300,fullname.lname)
 
-  doc.text(70,450,"Patient Gender : ")
-  doc.text(300,450,gender)
+  docD.text(70,350,"Patient Email : ")
+  docD.text(300,350,fullname.email)
 
-  doc.text(70,500,"Appointment Time : ")
-  doc.text(300,500,time)
+  docD.text(70,400,"Patient PhoneNumber : ")
+  docD.text(300,400,fullname.phone)
 
-  doc.text(70,550,"Fees : ")
-doc.text(300,550,location.state.text)*/
+  docD.text(70,450,"Patient Gender : ")
+  docD.text(300,450,gender)
+
+  docD.text(70,500,"Appointment Time : ")
+  docD.text(300,500,time)
+
+  docD.text(70,550,"Fees : ")
+docD.text(300,550,location.state.text)
 
   return (
     <>
@@ -366,10 +366,11 @@ doc.text(300,550,location.state.text)*/
           </button>
           <div style={{ marginTop: "50px" }}>
             <button onClick={()=>{
+              updateAppointment()
               Allappointment()
               addToFirebase()
               swal("CONGRATULATIONS  "+ `${fullname.fname}`,"Your Appointment has Been Successfully Booked  for " + `${location.state.title}` + ", A Confirmation  Has Been Downloaded." + " Thanks For Choosing Us!","success")
-              //doc.save("Appointment-Recipt.pdf")
+              docD.save("Appointment-Recipt.pdf")
             }}
               style={{
                 width: "60%",
